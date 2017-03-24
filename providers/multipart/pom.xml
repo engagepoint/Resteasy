@@ -12,6 +12,10 @@
     <name>RESTEasy Multipart Provider</name>
     <description/>
 
+    <properties>
+        <version.mime4j>0.7.2</version.mime4j>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
@@ -34,7 +38,13 @@
         </dependency>
         <dependency>
             <groupId>org.apache.james</groupId>
-            <artifactId>apache-mime4j</artifactId>
+            <artifactId>apache-mime4j-dom</artifactId>
+            <version>${version.mime4j}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.james</groupId>
+            <artifactId>apache-mime4j-storage</artifactId>
+            <version>${version.mime4j}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.spec.javax.servlet</groupId>
@@ -51,7 +61,7 @@
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging-processor</artifactId>
-        </dependency> 
+        </dependency>
     </dependencies>
 
     <build>
@@ -100,7 +110,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-resources-plugin</artifactId>
-                       <executions>
+                        <executions>
                             <execution>
                                 <id>copy-resources</id>
                                 <phase>initialize</phase>
@@ -108,7 +118,9 @@
                                     <goal>copy-resources</goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>${basedir}/src/main/resources/org/jboss/resteasy/plugins/providers/multipart/i18n</outputDirectory>
+                                    <outputDirectory>
+                                        ${basedir}/src/main/resources/org/jboss/resteasy/plugins/providers/multipart/i18n
+                                    </outputDirectory>
                                     <resources>
                                         <resource>
                                             <directory>${basedir}/src/test/resources/i18n</directory>
@@ -124,24 +136,24 @@
                     </plugin>
 
                     <plugin>
-                       <groupId>org.apache.maven.plugins</groupId>
-                       <artifactId>maven-surefire-plugin</artifactId>
-                       <executions>
-                           <execution>
-                               <id>i18</id>
-                               <phase>test</phase>
-                               <goals>
-                                   <goal>test</goal>
-                               </goals>
-                               <configuration>
-                                   <skip>false</skip>
-                                   <reuseForks>false</reuseForks>
-                                   <includes>
-                                       <include>**/I18nTestMessages_*.java</include>
-                                   </includes>
-                               </configuration>
-                           </execution>
-                       </executions>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>i18</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <skip>false</skip>
+                                    <reuseForks>false</reuseForks>
+                                    <includes>
+                                        <include>**/I18nTestMessages_*.java</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
