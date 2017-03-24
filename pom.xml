@@ -21,6 +21,7 @@
         <jboss.home/>
         <!-- print logs to file by default -->
         <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
+        <version.resteasy>3.1.1.Final</version.resteasy>
     </properties>
 
     <url>http://rest-easy.org</url>
@@ -114,7 +115,7 @@
                     <dependency>
                         <groupId>org.jboss.resteasy</groupId>
                         <artifactId>resteasy-dependencies</artifactId>
-                        <version>${project.version}</version>
+                        <version>${version.resteasy}</version>
                         <type>pom</type>
                         <scope>import</scope>
                     </dependency>
